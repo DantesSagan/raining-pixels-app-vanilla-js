@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: black;
+}
+#canvas1 {
+  border: 5px solid red;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1251px;
+  height: 1151px;
+  background: white;
+}
+/* #add {
+  background: white;
+} */
+button:hover {
+  background: linear-gradient(to right, red, pink);;
+}
+
