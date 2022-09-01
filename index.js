@@ -51,20 +51,33 @@ function ChangeAnglePixels() {
   angle.addEventListener('change', inputHandler);
 }
 
+let circleMotion = document.querySelector('input[id="circlePixels"]');
+let circleAngle = Number(circleMotion.value);
+circleAngle = 0;
+function ChangeMotionPixels() {
+  const resultCircle = document.getElementById('resultCircle');
+  const inputHandler = (e) => {
+    circleAngle = e.target.value;
+    resultCircle.innerHTML = e.target.value;
+  };
+  circleMotion.addEventListener('change', inputHandler);
+}
+
 let standartBoolean;
 document.querySelector('#standart').innerHTML = 'Standart animation';
 function StandartAnimation() {
   standartBoolean = !standartBoolean;
-  if(standartBoolean=== true){
+  if (standartBoolean === true) {
     document.querySelector('#standart').innerHTML = 'Angle animation';
-  }else {
-    document.querySelector('#standart').innerHTML = 'Standart animation'
+  } else {
+    document.querySelector('#standart').innerHTML = 'Standart animation';
   }
   console.log(standartBoolean);
 }
 
 let compositeBoolean;
-document.querySelector('#composite').innerHTML = 'globalCompositeOperation - Off';
+document.querySelector('#composite').innerHTML =
+  'globalCompositeOperation - Off';
 function CompositeAnimation() {
   compositeBoolean = !compositeBoolean;
   if (compositeBoolean === true) {
@@ -75,6 +88,30 @@ function CompositeAnimation() {
       ' globalCompositeOperation - Off';
   }
   console.log(compositeBoolean);
+}
+
+let gradientBoolean;
+document.querySelector('#gradient').innerHTML = 'Gradient color - Off';
+function GradientColor() {
+  gradientBoolean = !gradientBoolean;
+  if (gradientBoolean === true) {
+    document.querySelector('#gradient').innerHTML = 'Gradient color - On';
+  } else {
+    document.querySelector('#gradient').innerHTML = 'Gradient color - Off';
+  }
+  console.log(gradientBoolean);
+}
+
+let circularBoolean;
+document.querySelector('#circular').innerHTML = 'Circular motion - Off';
+function CircularMotion() {
+  circularBoolean = !circularBoolean;
+  if (circularBoolean === true) {
+    document.querySelector('#circular').innerHTML = 'Circular motion - On';
+  } else {
+    document.querySelector('#circular').innerHTML = 'Circular motion - Off';
+  }
+  console.log(circularBoolean);
 }
 
 console.log(standartBoolean);
@@ -96,7 +133,7 @@ gradient1.addColorStop(0.7, 'white');
 gradient1.addColorStop(0.8, 'gray');
 gradient1.addColorStop(0.9, 'black');
 
-console.log(gradient1);
+// console.log(gradient1);
 let particlesArray = [];
 let mappedImage = [];
 let letters = [
@@ -129,13 +166,17 @@ let letters = [
 ];
 
 let switcher = 1;
+let switcherOne = 2;
 let counter = 0;
 setInterval(() => {
   counter++;
   if (counter % 12 === 0) {
     switcher *= -1;
+  } else if (counter % 24 === 0) {
+    switcherOne *= -1;
   }
-}, 500);
+  // console.log(counter);
+}, 2000);
 // let valueOfParticles = document.querySelector('input[id="pixels"]');
 // let valueParticles = Number(valueOfParticles.value);
 // // valueParticles = 500;
@@ -156,7 +197,7 @@ function addNumber() {
 function delNumber() {
   particlesArray.splice(0, particlesArray.length);
 }
-console.log(numberOfParticles);
+// console.log(numberOfParticles);
 class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
@@ -186,14 +227,15 @@ class Particle {
     // this is for strok(square particles)
     this.size = this.speed * 2 * volumeSize;
 
-    if(compositeBoolean === true){
-      c.globalCompositeOperation = 'soft-light';
+    if (compositeBoolean === true) {
+      // c.globalCompositeOperation = 'color-dodge';
       if (switcher === 1) {
-        c.globalCompositeOperation = 'soft-light';
-      } else {
+        c.globalCompositeOperation = 'color-dodge';
+      } else if (switcherOne === 2) {
         c.globalCompositeOperation = 'luminosity';
-      }
+      } 
     } else {
+      counter = 0;
       c.globalCompositeOperation = '';
     }
 
@@ -209,7 +251,13 @@ class Particle {
       this.y += movement * volumeAngle;
       this.x += movement;
     }
-    // this.x += movement * Math.cos((this.angle * Math.PI) / 360);
+    if (circularBoolean) {
+      this.y += movement;
+      this.x += movement * Math.cos(this.angle * Math.PI) * circleAngle;
+    } else {
+      this.y += movement * volumeAngle;
+      this.x += movement;
+    }
     if (this.y >= canvas.height) {
       this.y = 0;
       this.x = Math.random() * canvas.width;
@@ -232,8 +280,12 @@ class Particle {
       mappedImage[this.position1] &&
       mappedImage[this.position1][this.position2]
     ) {
-      c.fillStyle = mappedImage[this.position1][this.position2][1];
-      c.strokeStyle = mappedImage[this.position1][this.position2][1];
+      if (gradientBoolean === true) {
+        c.fillStyle = gradient1;
+      } else {
+        c.fillStyle = mappedImage[this.position1][this.position2][1];
+        c.strokeStyle = mappedImage[this.position1][this.position2][1];
+      }
     }
     // or you can use gradient of picked colors
     // c.fillStyle = gradient1;
@@ -298,7 +350,7 @@ image.addEventListener('load', () => {
     c.globalAlpha = 0.05;
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
-    c.globalAlpha = 0.25;
+    // c.globalAlpha = 0.25;
     for (let i = 0; i < particlesArray.length; i++) {
       // if c.globalAlpha = particlesArray[i].speed * 0.5;
       //   cells will be fall only to image  if without it cells fall by all x axis

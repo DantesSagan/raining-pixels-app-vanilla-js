@@ -39,7 +39,7 @@
         style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; margin-left:45px;"
         onclick="StandartAnimation(); " />
     <br />
-    <div  style="padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; width:250px;">
+    <div style="padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; width:250px;">
         <span style="color:white;">Changing between soft-light and luminosity</span>
         <br />
         <span id='composite' style="color:white;"></span>
@@ -49,6 +49,25 @@
             onclick="CompositeAnimation(); " />
         <br />
     </div>
+    <div style="padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; width:250px;">
+        <span id='gradient' style="color:white;"></span>
+        <br />
+        <input type="checkbox"
+            style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; margin-left:45px;"
+            onclick="GradientColor(); " />
+    </div>
+    <div style="padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; width:250px;">
+        <span id='circular' style="color:white;"></span>
+        <br />
+        <input type="checkbox"
+            style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; margin-left:45px;"
+            onclick="CircularMotion(); " />
+        <input id="circlePixels" type="range" min="1" max="10" step="1" value="1"
+            style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; margin-left:45px;"
+            onchange="ChangeMotionPixels(); " />
+            <span id='resultCircle' style="color:white;"></span>
+    </div>
+    <br />
     <button id="add"
         style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;"
         onclick="addNumber(); ">Add</button>
