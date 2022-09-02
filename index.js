@@ -176,7 +176,7 @@ setInterval(() => {
     switcherOne *= -1;
   }
   // console.log(counter);
-}, 2000);
+}, 500);
 // let valueOfParticles = document.querySelector('input[id="pixels"]');
 // let valueParticles = Number(valueOfParticles.value);
 // // valueParticles = 500;
@@ -233,10 +233,32 @@ class Particle {
         c.globalCompositeOperation = 'color-dodge';
       } else if (switcherOne === 2) {
         c.globalCompositeOperation = 'luminosity';
-      } 
+      }
     } else {
       counter = 0;
-      c.globalCompositeOperation = '';
+      c.globalCompositeOperation = 'source-over';
+      if (standartBoolean) {
+        this.y += movement;
+        this.x += movement;
+      } else {
+        this.y += movement * volumeAngle;
+        this.x += movement;
+      }
+      if (circularBoolean) {
+        this.y += movement;
+        this.x += movement * Math.cos(this.angle * Math.PI) * circleAngle;
+      } else {
+        this.y += movement * volumeAngle;
+        this.x += movement;
+      }
+      if (this.y >= canvas.height) {
+        this.y = 0;
+        this.x = Math.random() * canvas.width;
+      }
+      if (this.x >= canvas.width) {
+        this.x = 0;
+        this.y = Math.random() * canvas.height;
+      }
     }
 
     // if(counter % 220 === 0){
