@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <h1 id="answer" style="color:white; justify-content:center;align-items:center; text-align:center; "></h1>
     <canvas id="canvas1"></canvas>
     <h1 style="color:white;">Pixels speed</h1>
     <input id="speedPixels" type="range" value="0" onchange="ChangeSpeedPixels();" min="0" max='50' step="1" />
@@ -20,8 +21,12 @@
     <h1 style="color:white;">Pixels size</h1>
     <input id="sizePixels" type="range" value="1" onchange="ChangeSizePixels();" min="1" max='5' step="0.2" />
     <span id="resultSize" style="color:white;">1</span>
-    <!-- <br />
-    <input id="addFile" type="file" onchange='SelectFile();' accept=".jpg, .jpeg, .png" /> -->
+    <br />
+    <input id="addFile" type="file" accept=".jpg, .jpeg, .png" />
+    <br />
+    <button id="delUrl" style="color:white;">
+        deleteurl
+    </button>
     <br />
     <h1 style="color:white;">Pixels angle</h1>
     <input id="anglePixels" type="range" value="0.005" onchange="ChangeAnglePixels();" min="0.005" max='1'
@@ -65,14 +70,14 @@
         <input id="circlePixels" type="range" min="1" max="10" step="1" value="1"
             style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px; margin-left:45px;"
             onchange="ChangeMotionPixels(); " />
-            <span id='resultCircle' style="color:white;"></span>
+        <span id='resultCircle' style="color:white;"></span>
     </div>
     <br />
     <button id="add"
+        style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;">Add</button>
+    <button id="del"
         style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;"
-        onclick="addNumber(); ">Add</button>
-    <button style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;"
-        onclick="delNumber(); ">Del</button>
+        >Del</button>
     <br />
     <script src="index.js"></script>
 </body>
