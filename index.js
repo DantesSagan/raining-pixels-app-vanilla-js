@@ -229,11 +229,11 @@ image.addEventListener('load', () => {
   };
 
   file.addEventListener('change', inputHandler);
-  delFile.addEventListener('click', () => {
-    file.value ='';
-    particlesArray.splice(0, particlesArray.length);
-    c.clearRect(0, 0, canvas.width, canvas.height);
-  });
+  // delFile.addEventListener('click', () => {
+  //   file.value ='';
+  //   particlesArray.splice(0, particlesArray.length);
+  //   c.clearRect(0, 0, canvas.width, canvas.height);
+  // });
   let numberOfParticles = 1000;
   class Particle {
     constructor() {
