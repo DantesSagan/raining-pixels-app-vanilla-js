@@ -175,6 +175,7 @@ image.addEventListener('load', () => {
   let switcher = 1;
   let switcherOne = 2;
   let counter = 0;
+  
   setInterval(() => {
     counter++;
     if (counter % 12 === 0) {
@@ -198,34 +199,15 @@ image.addEventListener('load', () => {
   //   // 👇️ or hide image
   //   // image.style.display = 'none';
   // }
-  function clearInputFile(f) {
-    if (f.value) {
-      try {
-        f.value = ''; //for IE11, latest Chrome/Firefox/Opera...
-      } catch (err) {
-        console
-      }
-      if (f.value) {
-        //for IE5 ~ IE10
-        var form = document.createElement('form'),
-          parentNode = f.parentNode,
-          ref = f.nextSibling;
-        form.appendChild(f);
-        form.reset();
-        parentNode.insertBefore(f, ref);
-      }
-    }
-  }
+
   const inputHandler = () => {
     const files = file.files;
-    // clearInputFile(file);
-    URL.revokeObjectURL(files[0]);
+    image.src = '';
     particlesArray.splice(0, particlesArray.length);
+    // clearInputFile(file);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    image.setAttribute('src', '');
-    setTimeout(() => {
+    URL.revokeObjectURL(files[0]);
       image.src = URL.createObjectURL(files[0]);
-    }, 1000);
   };
 
   file.addEventListener('change', inputHandler);
