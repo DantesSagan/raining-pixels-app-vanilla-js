@@ -175,7 +175,7 @@ image.addEventListener('load', () => {
   let switcher = 1;
   let switcherOne = 2;
   let counter = 0;
-  
+
   setInterval(() => {
     counter++;
     if (counter % 12 === 0) {
@@ -203,11 +203,13 @@ image.addEventListener('load', () => {
   const inputHandler = () => {
     const files = file.files;
     image.src = '';
+    // this is clears particles array which contains class new Particle()
     particlesArray.splice(0, particlesArray.length);
-    // clearInputFile(file);
+    // this is clears mapped image array which contains indexes of classes Particle
+    // which is also contains information about rgba data array
+    mappedImage.splice(0, mappedImage.length);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    URL.revokeObjectURL(files[0]);
-      image.src = URL.createObjectURL(files[0]);
+    image.src = URL.createObjectURL(files[0]);
   };
 
   file.addEventListener('change', inputHandler);
