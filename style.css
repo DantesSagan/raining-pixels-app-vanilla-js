@@ -4,6 +4,18 @@
   box-sizing: border-box;
   background: black;
 }
+body {
+  height: 100%;
+}
+.wrapper {
+  min-height:100%;
+  display:flex;
+  flex-direction: column;
+}
+.main {
+  paddin: 30px;
+  flex: 1 1 auto;
+}
 #canvas1 {
   border: 5px solid red;
   position: absolute;

@@ -37,9 +37,7 @@
     <br />
     <label style="color:white;" for="pixels">Value of Particles(pixels)</label>
     <br />
-    <!-- <input id="pixels" type="range" onchange='ChangeValuePixels();' style="color:white;" min="500" max="50000"
-        value="500" step="500" /> -->
-    <br />
+
     <span id='standart' style="color:white;"></span>
     <br />
     <input type="checkbox" checked
@@ -75,12 +73,32 @@
         <span id='resultCircle' style="color:white;"></span>
     </div>
     <br />
+    <span style="color:white;">Adding volume of pixel in image</span>
+    <br />
+    <input id="pixelsRange" type="range" onchange='ChangeValuePixels();' style="color:white;" min="500" max="5000"
+        value="500" step="500" />
+    <span id="resultPixels" style="color:white;"></span>
+    <br />
     <button id="add"
         style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;">Add</button>
+    <br />
+    <span style="color:white;">Deleting volume of pixel in image</span>
+    <br />
+    <input id="pixelsRangeDel" type="range" onchange='ChangeValuePixelsDel();' style="color:white;" min="500" max="5000"
+        value="500" step="500" />
+    <br />
+    <button id="decrease"
+            style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;">Decrease</button>
+    <span id="resultPixelsDel" style="color:white;"></span>
+    <br />
     <button id="del"
         style="color:white; padding:10px; margin:1px; cursor:pointer; border: 1px solid red; border-radius:15px;">Del</button>
     <br />
-    <script src="index.js"></script>
+    <p id="elem">Привет!</p>
+    <script src="index.js">
+        elem.textContent = elem.outerHTML
+        alert(elem.innerHTML);
+    </script>
 </body>
 
 </html>
